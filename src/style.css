@@ -1,0 +1,91 @@
+:root {
+  --safe-l: max(24px, env(safe-area-inset-left));
+  --safe-r: max(24px, env(safe-area-inset-right));
+  --safe-t: max(24px, env(safe-area-inset-top));
+  --safe-b: max(24px, env(safe-area-inset-bottom));
+  --bone: #e8dfc4;
+  --ember: #ffb347;
+  --blood: #b3242c;
+  --ecto: #8ff5e0;
+  --ink: #05070a;
+  --display: 'Creepster', 'Chiller', fantasy;
+  --serif: 'IM Fell English SC', 'Palatino Linotype', Georgia, serif;
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; height: 100%; background: var(--ink); overflow: hidden; overscroll-behavior: none; }
+body { color: var(--bone); font-family: var(--serif); font-size: 14px; user-select: none; -webkit-user-select: none; touch-action: none; }
+#app { position: fixed; inset: 0; }
+canvas { position: absolute; inset: 0; display: block; }
+.hidden { display: none !important; }
+
+/* atmosphere */
+.fog { position: absolute; inset: -20%; pointer-events: none; mix-blend-mode: screen; opacity: 0.35; filter: blur(18px); }
+.fog-a { background: radial-gradient(40% 30% at 30% 60%, rgba(140,170,180,0.35), transparent 70%), radial-gradient(35% 25% at 75% 35%, rgba(120,150,170,0.3), transparent 70%); animation: drift 38s linear infinite alternate; }
+.fog-b { background: radial-gradient(30% 20% at 60% 75%, rgba(160,180,190,0.3), transparent 70%), radial-gradient(25% 25% at 15% 25%, rgba(130,160,170,0.25), transparent 70%); animation: drift 52s linear infinite alternate-reverse; }
+@keyframes drift { from { transform: translate3d(-6%, 2%, 0); } to { transform: translate3d(6%, -3%, 0); } }
+.vignette { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,0.85) 100%); }
+body.hurt .vignette { animation: hurt 0.6s ease-out; }
+@keyframes hurt { 0% { background: radial-gradient(ellipse at center, rgba(120,0,0,0.25) 30%, rgba(90,0,0,0.95) 100%); } 100% { background: radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,0.85) 100%); } }
+
+.flicker { animation: flicker 4.5s infinite; }
+@keyframes flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; text-shadow: 0 0 6px rgba(255,140,60,0.8), 0 0 22px rgba(255,80,30,0.55), 0 0 44px rgba(179,36,44,0.5); }
+  20%, 24%, 55% { opacity: 0.55; text-shadow: none; }
+}
+
+/* HUD */
+#hud { position: absolute; top: var(--safe-t); left: var(--safe-l); right: var(--safe-r); display: flex; align-items: flex-start; justify-content: space-between; pointer-events: none; }
+.hud-left { display: flex; flex-direction: column; gap: 4px; }
+.tide-label { font-family: var(--display); font-size: 22px; letter-spacing: 1px; color: var(--ember); text-shadow: 0 0 10px rgba(255,120,40,0.6); line-height: 1; }
+.hearts { display: flex; gap: 4px; }
+.heart { width: 20px; height: 20px; fill: var(--blood); filter: drop-shadow(0 0 4px rgba(255,40,40,0.7)); }
+.heart.lost { fill: rgba(255,255,255,0.12); filter: none; }
+.hud-center { display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 180px; }
+.oil-caption, .souls { font-size: 12px; letter-spacing: 1px; color: rgba(232,223,196,0.8); }
+.oil { width: 180px; height: 10px; border: 1px solid rgba(255,190,100,0.5); border-radius: 6px; background: rgba(0,0,0,0.5); overflow: hidden; }
+.oil-fill { height: 100%; background: linear-gradient(90deg, #8a3b12, var(--ember), #ffe6a6); box-shadow: 0 0 10px rgba(255,170,60,0.8); transition: width 0.1s linear; }
+.oil-fill.dry { background: #5a1c14; box-shadow: none; animation: blink 0.4s infinite; }
+@keyframes blink { 50% { opacity: 0.3; } }
+.icon-btn { pointer-events: auto; width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(232,223,196,0.35); background: rgba(5,7,10,0.6); display: grid; place-items: center; padding: 0; }
+.icon-btn svg { width: 22px; height: 22px; fill: var(--bone); }
+
+/* touch controls */
+#controls { position: absolute; inset: 0; pointer-events: none; }
+.stick { position: absolute; bottom: var(--safe-b); width: 124px; height: 124px; border-radius: 50%; pointer-events: auto; touch-action: none; }
+#moveStick { left: var(--safe-l); }
+#aimStick { right: var(--safe-r); }
+.stick-ring { position: absolute; inset: 0; border-radius: 50%; border: 2px solid rgba(232,223,196,0.25); background: radial-gradient(circle, rgba(232,223,196,0.06), rgba(0,0,0,0.35)); box-shadow: inset 0 0 18px rgba(0,0,0,0.8); }
+.stick.aim .stick-ring { border-color: rgba(255,179,71,0.35); }
+.stick.held .stick-ring { border-color: rgba(232,223,196,0.6); }
+.knob { position: absolute; left: 50%; top: 50%; width: 52px; height: 52px; border-radius: 50%; transform: translate(-50%, -50%); background: radial-gradient(circle at 35% 30%, #6b6a63, #24231f); border: 1px solid rgba(232,223,196,0.4); box-shadow: 0 4px 10px rgba(0,0,0,0.7); }
+.lantern-knob { background: radial-gradient(circle at 40% 35%, #ffe7a8, #c46a1a 60%, #3d1a05); box-shadow: 0 0 18px rgba(255,160,60,0.6); }
+.stick-cap { position: absolute; left: 50%; bottom: -2px; transform: translate(-50%, 100%); font-size: 12px; letter-spacing: 1px; color: rgba(232,223,196,0.55); display: none; }
+.flare-btn { position: absolute; right: calc(var(--safe-r) + 136px); bottom: calc(var(--safe-b) + 8px); width: 60px; height: 60px; border-radius: 50%; pointer-events: auto; border: 2px solid rgba(143,245,224,0.5); background: radial-gradient(circle, rgba(143,245,224,0.18), rgba(0,0,0,0.6)); display: grid; place-items: center; padding: 0; color: var(--ecto); box-shadow: 0 0 14px rgba(143,245,224,0.3); }
+.flare-btn svg { width: 26px; height: 26px; fill: var(--ecto); }
+.flare-btn span { position: absolute; top: -4px; right: -4px; min-width: 22px; height: 22px; border-radius: 11px; background: var(--ink); border: 1px solid var(--ecto); font-size: 12px; line-height: 20px; font-family: var(--serif); }
+.flare-btn.empty { opacity: 0.35; box-shadow: none; }
+.flare-btn:active, .big-btn:active, .icon-btn:active { transform: scale(0.94); }
+
+/* banner + screens */
+.banner { position: absolute; left: 50%; top: 32%; transform: translate(-50%, -50%); text-align: center; pointer-events: none; }
+.banner.fade { animation: bannerIn 2.4s ease forwards; }
+@keyframes bannerIn { 0% { opacity: 0; letter-spacing: 12px; } 15% { opacity: 1; letter-spacing: 3px; } 80% { opacity: 1; } 100% { opacity: 0; } }
+.banner-title { font-family: var(--display); font-size: 54px; color: var(--ember); line-height: 1; }
+.banner-sub { font-size: 16px; margin-top: 6px; color: var(--bone); text-shadow: 0 0 8px #000; }
+
+.screen { position: absolute; inset: 0; padding: var(--safe-t) var(--safe-r) var(--safe-b) var(--safe-l); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; background: radial-gradient(ellipse at center, rgba(5,7,10,0.35), rgba(5,7,10,0.88)); text-align: center; }
+.title { font-family: var(--display); font-weight: 400; font-size: 76px; margin: 0; line-height: 0.95; color: var(--ember); letter-spacing: 3px; }
+.title.small { font-size: 52px; }
+#endScreen.won .title { color: #ffe9b0; }
+.subtitle { margin: 0; max-width: 520px; font-size: 15px; color: rgba(232,223,196,0.88); }
+.howto { display: flex; gap: 18px; font-size: 13px; color: rgba(232,223,196,0.75); margin: 4px 0 6px; }
+.howto .glyph { color: var(--ember); margin-right: 6px; }
+.big-btn { min-height: 52px; min-width: 220px; padding: 0 26px; font-family: var(--display); font-size: 26px; letter-spacing: 2px; color: var(--ink); border: none; border-radius: 26px; background: radial-gradient(circle at 50% 30%, #ffe2a0, var(--ember) 55%, #9a3d0d); box-shadow: 0 0 24px rgba(255,150,50,0.55), inset 0 -3px 0 rgba(0,0,0,0.3); }
+.text-btn { min-height: 44px; padding: 0 16px; font-family: var(--serif); font-size: 14px; color: rgba(232,223,196,0.75); background: none; border: none; text-decoration: underline; text-underline-offset: 4px; }
+
+.rotate { display: none; position: fixed; inset: 0; z-index: 10; background: var(--ink); color: var(--bone); flex-direction: column; align-items: center; justify-content: center; gap: 16px; text-align: center; padding: 24px; font-size: 16px; }
+.rotate svg { width: 72px; height: 72px; fill: none; stroke: var(--ember); stroke-width: 3; stroke-linecap: round; animation: tilt 2s ease-in-out infinite; }
+@keyframes tilt { 50% { transform: rotate(-90deg); } }
+@media (orientation: portrait) { .rotate { display: flex; } }
+@media (max-height: 360px) { .title { font-size: 60px; } .howto { display: none; } }
+@media (prefers-reduced-motion: reduce) { .fog, .flicker, .banner.fade { animation: none; } }

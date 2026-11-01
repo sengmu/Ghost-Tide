@@ -1,0 +1,14 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "test-on-save",
+      "description": "Run the Vitest suite whenever simulation, data or math code is saved.",
+      "enabled": true,
+      "trigger": "PostFileSave",
+      "matcher": "(src/(game|tides|geometry)\\.js|tests/.*\\.test\\.js)$",
+      "action": { "type": "command", "command": "npm test --silent" },
+      "timeout": 60
+    }
+  ]
+}

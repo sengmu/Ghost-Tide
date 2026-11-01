@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <meta name="theme-color" content="#05070a" />
+  <meta name="screen-orientation" content="landscape" />
+  <title>Ghost Tide</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2305070a'/%3E%3Cpath d='M28 14h8l4 40H24z' fill='%23d9cfa8'/%3E%3Ccircle cx='32' cy='12' r='7' fill='%23ffcf6a'/%3E%3C/svg%3E" />
+</head>
+<body>
+  <div id="app">
+    <canvas id="world" aria-label="Ghost Tide game world"></canvas>
+    <div class="fog fog-a"></div><div class="fog fog-b"></div>
+    <div class="vignette"></div>
+
+    <!-- HUD -->
+    <div id="hud" class="hidden">
+      <div class="hud-left">
+        <div id="tideLabel" class="tide-label">Tide I</div>
+        <div id="hearts" class="hearts" aria-label="Keeper life"></div>
+      </div>
+      <div class="hud-center">
+        <div class="oil-caption">Lantern oil</div>
+        <div class="oil"><div id="oilFill" class="oil-fill"></div></div>
+        <div id="souls" class="souls">Souls banished: 0</div>
+      </div>
+      <button id="pauseBtn" class="icon-btn" aria-label="Pause">
+        <svg viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+      </button>
+    </div>
+
+    <!-- Touch controls -->
+    <div id="controls" class="hidden">
+      <div id="moveStick" class="stick" aria-label="Move">
+        <div class="stick-ring"></div><div class="knob"></div><span class="stick-cap">Walk</span>
+      </div>
+      <button id="flareBtn" class="flare-btn" aria-label="Flare">
+        <svg viewBox="0 0 24 24"><path d="M12 2l2.2 6.3L21 9l-5.2 4 1.8 7L12 16.3 6.4 20l1.8-7L3 9l6.8-.7z"/></svg>
+        <span id="flareCount">2</span>
+      </button>
+      <div id="aimStick" class="stick aim" aria-label="Aim lantern">
+        <div class="stick-ring"></div><div class="knob lantern-knob"></div><span class="stick-cap">Lantern</span>
+      </div>
+    </div>
+
+    <div id="banner" class="banner hidden"></div>
+
+    <!-- Screens -->
+    <section id="titleScreen" class="screen">
+      <h1 class="title flicker">Ghost Tide</h1>
+      <p class="subtitle">The sea gives back what it drowned. Keep the light burning until dawn.</p>
+      <div class="howto">
+        <div><span class="glyph">&#9711;</span>Left thumb: walk the shore</div>
+        <div><span class="glyph">&#9788;</span>Right thumb: sweep the lantern</div>
+        <div><span class="glyph">&#10022;</span>Flare: burn every shade nearby</div>
+      </div>
+      <button id="startBtn" class="big-btn">Light the Lantern</button>
+      <button id="muteBtn" class="text-btn">Sound: on</button>
+    </section>
+
+    <section id="pauseScreen" class="screen hidden">
+      <h2 class="title small">Paused</h2>
+      <button id="resumeBtn" class="big-btn">Resume</button>
+      <button id="quitBtn" class="text-btn">Abandon the lighthouse</button>
+    </section>
+
+    <section id="endScreen" class="screen hidden">
+      <h2 id="endTitle" class="title small">The light went out</h2>
+      <p id="endText" class="subtitle"></p>
+      <button id="retryBtn" class="big-btn">Try again</button>
+    </section>
+
+    <div id="rotate" class="rotate">
+      <svg viewBox="0 0 64 64"><rect x="20" y="8" width="24" height="44" rx="4"/><path d="M50 40a18 18 0 0 1-18 18" /><path d="M32 58l4-4M32 58l4 4"/></svg>
+      <p>Turn your phone sideways.<br />The tide only rises in landscape.</p>
+    </div>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+# Implementation Plan
+
+- [x] 1. Scaffold Vite project, MIT license, steering docs
+  - Create `index.html`, `vite.config.js`, `package.json` scripts (dev/build/test)
+  - _Requirements: 1.1_
+- [x] 2. Pure math module with tests
+  - [x] 2.1 `inCone` with angular padding for big ghosts and +/-PI seam handling
+  - [x] 2.2 `clampToEllipse`, seeded `rng`
+  - _Requirements: 2.2, 3.2_
+- [x] 3. Simulation core (`game.js`)
+  - [x] 3.1 Keeper movement, island + tower collision
+  - [x] 3.2 Beam aiming with easing, oil drain/regen, dry latch at 25 %
+  - [x] 3.3 Ghost steering, lit slow-down, zig-zag banshee, boss summons
+  - [x] 3.4 Hearts, invulnerability, flare, tide/ebb/win/loss phases
+  - _Requirements: 2.1-2.3, 3.1-3.4, 4.1-4.6, 5.1-5.5_
+- [x] 4. Tide data (`tides.js`) with five escalating tides and boss placement
+  - _Requirements: 4.1, 4.4, 4.5_
+- [x] 5. Renderer
+  - [x] 5.1 Procedural island, graves, rocks, animated sea
+  - [x] 5.2 Darkness mask with lantern cone, aura, lighthouse sweep, flare rings
+  - [x] 5.3 Ghost bodies (lit alpha) and always-visible glowing eyes, particles, screen shake
+  - _Requirements: 3.5, 6.1_
+- [x] 6. Touch UI
+  - [x] 6.1 Two Pointer-Event thumb-sticks, Flare and Pause buttons inside the safe area
+  - [x] 6.2 HUD: tide label, SVG hearts, oil bar, souls counter
+  - [x] 6.3 Title, pause, end screens; portrait rotate screen
+  - _Requirements: 1.2-1.6, 5.4, 5.5_
+- [x] 7. Procedural audio with mute toggle; pause on hidden; reduced-motion support
+  - _Requirements: 6.2-6.4_
+- [x] 8. Headless smoke test + layout audit at 914x411; save `docs/screenshot.png`
+  - _Requirements: 1.3-1.5_
+- [ ] 9. Real-device pass on a phone (touch feel, performance, audio unlock)
+- [ ] 10. Record 3-minute demo video and publish

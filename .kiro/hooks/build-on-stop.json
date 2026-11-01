@@ -1,0 +1,13 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "build-on-stop",
+      "description": "Make sure the production build still passes when the agent finishes a turn.",
+      "enabled": true,
+      "trigger": "Stop",
+      "action": { "type": "command", "command": "npm run build --silent" },
+      "timeout": 120
+    }
+  ]
+}

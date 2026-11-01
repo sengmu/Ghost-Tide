@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "mobile-ui-guard",
+      "description": "When UI files change, remind the agent of the hard mobile UI rules from steering/product.md.",
+      "enabled": true,
+      "trigger": "PostFileSave",
+      "matcher": "(index\\.html|src/style\\.css|src/main\\.js)$",
+      "action": {
+        "type": "agent",
+        "prompt": "A UI file was just saved. Check the change against the Ghost Tide mobile rules: landscape 914x411 reference, >=24px safe margin (respect env(safe-area-inset-*)), touch targets >=44px, text >=12px, and no keyboard or mouse prompts. If anything violates a rule, fix it and explain the fix."
+      }
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+node_modules/
+dist/
+*.log
+.DS_Store
+# NOTE: .kiro/ is intentionally NOT ignored - it holds specs, steering and hooks.
