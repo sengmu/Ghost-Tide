@@ -1,6 +1,6 @@
 # Kiroween 2026 Submission Draft: Ghost Tide
 
-> Internal draft. Before submitting, replace every `[TODO]`, and make sure the Kiro write-up only claims what was really done inside Kiro IDE.
+> Internal draft for Kiroween 2026. Repo and playable URLs are filled in. Remaining `[TODO]`s: YouTube/Vimeo upload, and rewriting the Kiro section after a real Kiro IDE re-run. Do not claim Kiro generated the game until that re-run is done.
 
 ## Project title
 **Ghost Tide**
@@ -12,9 +12,9 @@ Five tides of the drowned. One lantern. Not enough oil.
 **Costume Contest**: a haunting, polished horror UI.
 
 ## Links
-- Repository: `[TODO public repo URL, MIT license visible at the top level]`
-- Playable build: `[TODO e.g. GitHub Pages / Netlify URL, open on a phone in landscape]`
-- Demo video: `[TODO YouTube/Vimeo URL, about 3 minutes]`
+- Repository: https://github.com/sengmu/Ghost-Tide (MIT license at the top level)
+- Playable build: https://sengmu.github.io/Ghost-Tide/ (open on a phone in landscape)
+- Demo video: `[TODO YouTube/Vimeo URL]` — local silent gameplay capture is ready at `ghost-tide-demo.mp4` (~19.6 MB, 112.8 s, 1828x822, H.264, no audio; segment notes in `ghost-tide-demo-notes.md`). Upload that file (or a cut with voice-over) to YouTube/Vimeo, then paste the public URL here. Suggested title: **Ghost Tide — Kiroween 2026 Costume Contest**. Description paste: see the social draft below.
 
 ## Description
 **Ghost Tide** is a short Halloween horror game built for phones held sideways. You play the last keeper of a lighthouse on a cursed island. As night falls, the sea gives back its drowned dead in five rising tides.
@@ -40,25 +40,26 @@ Five tides of the drowned. One lantern. Not enough oil.
 Built with Vite, vanilla JavaScript, Canvas2D and Web Audio. The JS is about 8 kB gzipped. MIT licensed.
 
 ## How we used Kiro
-`[TODO: confirm each bullet after doing it in Kiro IDE; delete anything you did not actually do]`
+> **Honest status (do not submit as-is):** the `.kiro/` specs, steering and hooks in this repo were **authored outside Kiro IDE** as the intended Kiroween workflow. They are committed on purpose so a judge (or you) can open the repo in Kiro, regenerate or refine the spec there, let the hooks fire for real, and then rewrite the bullets below to match what actually happened inside Kiro. Do **not** claim Kiro generated the game or ran these hooks until that re-run is done.
+
+**Ready-to-edit bullets** (after you re-run in Kiro IDE, keep only what you really did):
 
 - **Spec-driven development**: `.kiro/specs/ghost-tide/` holds:
   - `requirements.md`: six user stories with EARS acceptance criteria.
   - `design.md`: the architecture, interfaces, the darkness-mask lighting and the test strategy.
   - `tasks.md`: the plan, traced to requirement IDs.
 
-  Kiro executed the tasks one by one. The EARS criterion "WHEN oil reaches zero THE SYSTEM SHALL switch the beam off" became a unit test that caught a real one-frame bug.
-- **Steering**: `product.md`, `tech.md` and `structure.md` are always included. They hold the hard mobile rules (24/44/12 px, landscape only, no keyboard or mouse prompts) and the module boundary that keeps the simulation DOM-free, so every agent turn respects them.
-- **Agent hooks**:
+  `[TODO after Kiro re-run]` Example claim once true: Kiro executed the tasks one by one; the EARS criterion "WHEN oil reaches zero THE SYSTEM SHALL switch the beam off" became a unit test that caught a real one-frame bug.
+- **Steering**: `product.md`, `tech.md` and `structure.md` use `inclusion: always`. They hold the hard mobile rules (24/44/12 px, landscape only, no keyboard or mouse prompts) and the module boundary that keeps the simulation DOM-free.
+- **Agent hooks** (files present; `[TODO confirm they fired in Kiro]`):
   - `test-on-save`: runs Vitest when simulation code changes.
   - `mobile-ui-guard`: an agent prompt that re-audits UI rule compliance when HTML, CSS or `main.js` changes.
   - `build-on-stop`: runs the production build at the end of each agent turn.
 - **Vibe coding vs. spec**:
-  - The spec covered the game rules, where precision mattered.
-  - Vibe-coding sessions covered the "costume": fog, flicker timing, ghost silhouettes, palette and synth audio.
-  - Vibe coding was faster for taste-driven visuals. The spec was safer for rules that needed tests.
-- **MCP**: `[TODO only if used: e.g. a browser/Playwright MCP server so the agent could screenshot the game at 914x411 and read console errors]`
-- **Powers**: `[TODO only if used]`
+  - The spec covers the game rules, where precision mattered.
+  - The "costume" (fog, flicker, silhouettes, palette, synth audio) was built with fast visual iteration.
+- **MCP**: not used for the public build. `scripts/screenshot.mjs` is the scripted Playwright equivalent for 914x411 audits. `[TODO only if you later connect a browser/Playwright MCP in Kiro]`
+- **Powers**: none bundled. `[TODO only if used]`
 
 ## 3-minute demo video script
 | Time | Visual | Voice-over / caption |
@@ -89,13 +90,24 @@ For Kiroween I wanted a project where the interface itself was the costume. Ghos
 
 **Mobile rules as code.** The game targets a 914x411 landscape phone. Instead of trusting my eyes, a Playwright script renders the build at that size and DPR. It fails on any console error and audits that every button is at least 44 px, sits at least 24 px from the edges, and that no text is under 12 px.
 
-**How Kiro helped.** `[TODO: rewrite from your real experience]`
-- I wrote the game rules as a Kiro spec with EARS acceptance criteria. Those turned almost one-to-one into Vitest tests, and one of them caught a bug where the lantern stayed lit for a frame after running dry.
-- Steering files kept the mobile constraints in front of the agent on every turn.
-- Hooks ran tests on save and the build on stop.
-- For the visual "costume", vibe coding was the better tool: fast, taste-driven iteration.
+**How Kiro helped.** `[TODO: rewrite from your real experience after opening the repo in Kiro IDE]` Ready draft once the re-run is done:
+- The game rules live as a Kiro-shaped spec with EARS acceptance criteria in `.kiro/specs/ghost-tide/`. Those criteria map almost one-to-one onto Vitest tests; one of them covers the oil "dry latch" (the lantern must go dark the frame oil hits zero).
+- Steering files are meant to keep the mobile constraints (24/44/12 px, landscape only) in front of the agent on every turn.
+- Hooks are wired to run tests on save and the build on stop — confirm they actually fire inside Kiro before claiming this in the post.
+- For the visual "costume", fast taste-driven iteration was the better tool than a rigid spec.
 
-Play it on your phone, sideways, with the sound on: `[TODO playable URL]`. Code (MIT): `[TODO repo URL]`.
+Play it on your phone, sideways, with the sound on: https://sengmu.github.io/Ghost-Tide/. Code (MIT): https://github.com/sengmu/Ghost-Tide.
 
 ## Social post draft
-#KiroweenHackathon26 🎃 Ghost Tide: five tides of the drowned, one lantern, not enough oil. A haunted horror mini-game for phones in landscape. Every pixel and sound is procedural, built spec-first with @kirodotdev. Play: [TODO URL] · Code (MIT): [TODO URL]
+Ready to paste (update the Kiro claim after the IDE re-run if needed):
+
+> #KiroweenHackathon26 🎃 Ghost Tide: five tides of the drowned, one lantern, not enough oil. A haunted horror mini-game for phones in landscape. Every pixel and sound is procedural. Spec, steering and hooks are in the repo for Kiroween. Play: https://sengmu.github.io/Ghost-Tide/ · Code (MIT): https://github.com/sengmu/Ghost-Tide
+
+YouTube/Vimeo description paste (after you upload `ghost-tide-demo.mp4`):
+
+> Ghost Tide — Kiroween 2026 Costume Contest
+> Five tides of the drowned. One lantern. Not enough oil.
+> Play (phone, landscape): https://sengmu.github.io/Ghost-Tide/
+> Source (MIT): https://github.com/sengmu/Ghost-Tide
+> Silent gameplay capture (~1:53). Left thumb walks, right thumb sweeps the lantern, flares clear swarms. Tide V ends on Dawn.
+> `[TODO add voice-over / Kiro IDE B-roll per the 3-minute script above, then replace this line]`

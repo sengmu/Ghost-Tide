@@ -6,6 +6,11 @@ A short, polished Halloween horror mini-game for **phones in landscape**. You ar
 
 Built for **Kiroween 2026** (category: **Costume Contest**).
 
+## Play online
+**Live demo (GitHub Pages):** https://sengmu.github.io/Ghost-Tide/ — open on a phone held sideways, with sound on.
+
+Source: https://github.com/sengmu/Ghost-Tide
+
 ![Gameplay at 914x411](docs/screenshot.png)
 ![Title screen](docs/screenshot-title.png)
 
@@ -60,7 +65,7 @@ Survive all five tides to see the dawn. Three touches from the dead and the ligh
 Vite, vanilla ES modules and Canvas2D, with Web Audio for sound. Tests run on Vitest, and the smoke test uses Playwright (`playwright-core`). The production JS bundle is about 8 kB gzipped.
 
 ## How we used Kiro
-> **Draft note, remove before submitting:** the `.kiro` files below were first written by hand as the intended Kiro workflow. Open the repo in Kiro IDE, regenerate or refine the spec there, let the hooks actually fire, and then edit this section so that it only claims what really happened in Kiro.
+> **Draft note (keep until a real Kiro IDE re-run):** the `.kiro` files below were authored outside Kiro IDE as the intended Kiroween workflow. They are **not** proof that Kiro generated this game. Open the repo in Kiro IDE, regenerate or refine the spec there, let the hooks actually fire, and then edit this section so that it only claims what really happened in Kiro.
 
 Everything Kiro reads is in [`/.kiro`](.kiro). It is committed on purpose, and `.gitignore` does not exclude it.
 
