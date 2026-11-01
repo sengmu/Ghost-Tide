@@ -1,6 +1,6 @@
 # Kiroween 2026 Submission Draft: Ghost Tide
 
-> Internal draft for Kiroween 2026. Repo and playable URLs are filled in. Remaining `[TODO]`s: YouTube/Vimeo upload, and rewriting the Kiro section after a real Kiro IDE re-run. Do not claim Kiro generated the game until that re-run is done.
+> Internal draft for Kiroween 2026. Repo, playable URL, and demo video are filled in. Remaining `[TODO]`s: rewriting the Kiro section after a real Kiro IDE re-run. Do not claim Kiro generated the game until that re-run is done.
 
 ## Project title
 **Ghost Tide**
@@ -14,7 +14,7 @@ Five tides of the drowned. One lantern. Not enough oil.
 ## Links
 - Repository: https://github.com/sengmu/Ghost-Tide (MIT license at the top level)
 - Playable build: https://sengmu.github.io/Ghost-Tide/ (open on a phone in landscape)
-- Demo video: `[TODO YouTube/Vimeo URL]` — local silent gameplay capture is ready at `ghost-tide-demo.mp4` (~19.6 MB, 112.8 s, 1828x822, H.264, no audio; segment notes in `ghost-tide-demo-notes.md`). Upload that file (or a cut with voice-over) to YouTube/Vimeo, then paste the public URL here. Suggested title: **Ghost Tide — Kiroween 2026 Costume Contest**. Description paste: see the social draft below.
+- Demo video: https://youtu.be/4fcbUh9w2F8 — silent gameplay capture uploaded (`ghost-tide-demo.mp4`, ~19.6 MB, 112.8 s, 1828x822, H.264, no audio; segment notes in `ghost-tide-demo-notes.md`). Title on YouTube: **Ghost Tide - Kiroween 2026 Demo**. Description paste: see the social draft below.
 
 ## Description
 **Ghost Tide** is a short Halloween horror game built for phones held sideways. You play the last keeper of a lighthouse on a cursed island. As night falls, the sea gives back its drowned dead in five rising tides.
@@ -101,9 +101,9 @@ Play it on your phone, sideways, with the sound on: https://sengmu.github.io/Gho
 ## Social post draft
 Ready to paste (update the Kiro claim after the IDE re-run if needed):
 
-> #KiroweenHackathon26 🎃 Ghost Tide: five tides of the drowned, one lantern, not enough oil. A haunted horror mini-game for phones in landscape. Every pixel and sound is procedural. Spec, steering and hooks are in the repo for Kiroween. Play: https://sengmu.github.io/Ghost-Tide/ · Code (MIT): https://github.com/sengmu/Ghost-Tide
+> #KiroweenHackathon26 🎃 Ghost Tide: five tides of the drowned, one lantern, not enough oil. A haunted horror mini-game for phones in landscape. Every pixel and sound is procedural. Spec, steering and hooks are in the repo for Kiroween. Play: https://sengmu.github.io/Ghost-Tide/ · Demo: https://youtu.be/4fcbUh9w2F8 · Code (MIT): https://github.com/sengmu/Ghost-Tide
 
-YouTube/Vimeo description paste (after you upload `ghost-tide-demo.mp4`):
+YouTube description paste (already uploaded at https://youtu.be/4fcbUh9w2F8):
 
 > Ghost Tide — Kiroween 2026 Costume Contest
 > Five tides of the drowned. One lantern. Not enough oil.
